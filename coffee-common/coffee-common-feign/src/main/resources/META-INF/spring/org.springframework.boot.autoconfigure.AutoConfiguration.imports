@@ -1,0 +1,2 @@
+com.coffee.common.feign.config.FeignErrorConfig
+com.coffee.common.feign.config.FeignRetrieverConfig

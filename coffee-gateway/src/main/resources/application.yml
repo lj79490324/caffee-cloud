@@ -1,0 +1,23 @@
+server:
+  port: 8082
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: coffee-gateway-service
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+      username: nacos
+      password: nacos
+      config:
+        file-extension: yaml
+        namespace: d025a889-46b6-43b1-97ae-27daf2b5ad91
+        group: GATEWAY_GROUP
+  config:
+    import:
+      - optional:nacos:redis.yaml?group=DATASOURCE_GROUP
+      - optional:nacos:coffee-gateway-service.yaml?group=GATEWAY_GROUP
+      - optional:nacos:coffee-gateway-service-dev.yaml?group=GATEWAY_GROUP&refreshEnabled=true
+  profiles:
+    active: dev

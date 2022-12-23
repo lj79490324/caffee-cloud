@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.coffee.system.mapper.SysRoleMapper">
+    <select id="getSysRoleByUserId" resultType="Long">
+        SELECT sr.id FROM  sys_role sr LEFT JOIN sys_user_role_conn surc ON  sr.id = surc.role_id WHERE surc.user_id = #{userId}
+    </select>
+
+    <select id="getSysRoleIdByGroupUser" resultType="Long">
+        SELECT sgr.role_id FROM  sys_group_role sgr LEFT JOIN sys_user_group sug ON sgr.group_id = sug.id LEFT JOIN sys_user_group_conn sugc on  sug.id = sugc.group_id WHERE sugc.user_id = #{userId}
+    </select>
+
+</mapper>

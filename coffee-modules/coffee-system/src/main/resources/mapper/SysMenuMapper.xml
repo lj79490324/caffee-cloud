@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.coffee.system.mapper.SysMenuMapper">
+
+    <select id="getSysMenuByRoleId" resultType="com.coffee.system.model.SysMenu">
+        SELECT
+                DISTINCT
+                sm.id,
+                sm.prent_id,
+                sm.sys_menu_name,
+                sm.sys_menu_code,
+                sm.sys_menu_url,
+                sm.sys_menu_component,
+                sm.sys_menu_type,
+                sm.sys_menu_icon,
+                sm.sys_menu_order,
+                sm.path,
+                sm.sys_menu_desc,
+                sm.create_time,
+                sm.update_time,
+                sm.`status`,
+                sm.display,
+                sm.auth_code
+        FROM
+                sys_menu AS sm
+        LEFT JOIN sys_role_menu srm ON sm.id = srm.menu_id WHERE srm.role_id in
+            <foreach collection="roleIds" item="item" index="index" open="(" separator="," close=")">
+                    #{item}
+            </foreach>
+        ORDER BY sm.sys_menu_order ASC
+    </select>
+    <select id="getSysMenuByUserId" resultType="com.coffee.system.model.SysMenu">
+        SELECT DISTINCT sm.* FROM
+            sys_menu AS sm
+                INNER JOIN
+            sys_role_menu AS srm
+            ON
+                sm.id = srm.menu_id
+                LEFT JOIN
+            sys_role AS sr
+            ON
+                srm.role_id = sr.id
+                LEFT JOIN
+            sys_user_role_conn AS surc
+            ON
+                sr.id = surc.role_id
+                LEFT JOIN
+            sys_group_role AS sgr
+            ON
+                sr.id = sgr.role_id
+                LEFT JOIN
+            sys_user_group AS sug
+            ON
+                sgr.group_id = sug.id
+                LEFT JOIN
+            sys_user_group_conn AS sugc
+            ON
+                sug.id = sugc.group_id
+        WHERE
+            sugc.user_id = #{uid} OR
+            surc.user_id = #{uid}
+        ORDER BY sys_menu_order ASC
+    </select>
+</mapper>

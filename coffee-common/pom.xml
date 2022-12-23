@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>com.coffee</groupId>
+        <artifactId>coffee-cloud</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>coffee-common</artifactId>
+    <description>通用模块</description>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>coffee-datasource-redis</module>
+        <module>coffee-datasource-mysql</module>
+        <module>coffee-common-feign</module>
+        <module>coffee-common-system</module>
+        <module>coffee-common-core</module>
+    </modules>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.coffee</groupId>
+                <artifactId>coffee-common-core</artifactId>
+                <version>${coffee-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.coffee</groupId>
+                <artifactId>coffee-datasource-redis</artifactId>
+                <version>${coffee-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.coffee</groupId>
+                <artifactId>coffee-datasource-mysql</artifactId>
+                <version>${coffee-version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.alibaba/druid-spring-boot-starter -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+                <version>${dynamic-datasource-version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-extension -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-extension</artifactId>
+                <version>${mybatis-plus-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-annotation</artifactId>
+                <version>${mybatis-plus-version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-core -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-core</artifactId>
+                <version>${mybatis-plus-version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>

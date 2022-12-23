@@ -1,0 +1,22 @@
+server:
+  port: 8094
+spring:
+  application:
+    name: coffee-system
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+      username: nacos
+      password: nacos
+      config:
+        file-extension: yaml
+        namespace: d025a889-46b6-43b1-97ae-27daf2b5ad91
+        group: MODULES_GROUP
+  config:
+    import:
+      - optional:nacos:mysql.yaml?group=DATASOURCE_GROUP
+      - optional:nacos:redis.yaml?group=DATASOURCE_GROUP
+      - optional:nacos:coffee-system.yaml?group=MODULES_GROUP
+#  profiles:
+#    active: dev
+
