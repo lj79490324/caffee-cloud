@@ -1,9 +1,11 @@
 package com.coffee.auth.controller;
 
 import com.coffee.auth.contanst.SecurityUrlParam;
+import com.coffee.auth.dto.SysUserDto;
 import com.coffee.auth.feign.RouterUserService;
 import com.coffee.auth.security.cache.RedisUserCache;
 import com.coffee.auth.security.exception.TokenAuthenticationException;
+import com.coffee.auth.security.jwt.JwtAuthenticationToken;
 import com.coffee.auth.security.model.SecurityUserDetails;
 import com.coffee.common.core.R;
 import com.coffee.system.model.SysUser;
@@ -15,6 +17,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
 
 /**
  * 用户token处理，退出登录功能
@@ -49,12 +53,19 @@ public class AuthController {
         if (authentication == null) {
             throw new TokenAuthenticationException("token异常");
         }
-        String userName = authentication.getPrincipal().toString();
+        JwtAuthenticationToken jat = (JwtAuthenticationToken) authentication;
+        String userName = jat.getPrincipal().toString();
         R<SysUser> userInfo = routerUserService.getUserInfo(userName);
         if (userInfo.getData() != null){
             SysUser sysUser = userInfo.getData();
-            sysUser.setPassword(null);
-            return R.ok(sysUser);
+
+            SysUserDto sysUserDto = SysUserDto.builder()
+                    .userName(sysUser.getUsername())
+                    .photo(null)
+                    .time(sysUser.getLastLoginTime())
+                    .roles(new ArrayList<>(jat.getSecurityUserDetails().getRoles()))
+                    .authBtnList(new ArrayList<>(jat.getSecurityUserDetails().getAuthBtnList())).build();
+            return R.ok(sysUserDto);
         }else {
             return R.error("信息不存在");
         }

@@ -5,6 +5,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 
 public class SecurityUserDetails implements UserDetails {
@@ -19,6 +20,10 @@ public class SecurityUserDetails implements UserDetails {
     private Integer status;
     //用户菜单
     private List<SysMenu> sysMenuList;
+
+    private HashSet<String> roles;
+
+    private HashSet<String> authBtnList;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -81,5 +86,21 @@ public class SecurityUserDetails implements UserDetails {
 
     public void setSysMenuList(List<SysMenu> sysMenuList) {
         this.sysMenuList = sysMenuList;
+    }
+
+    public HashSet<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(HashSet<String> roles) {
+        this.roles = roles;
+    }
+
+    public HashSet<String> getAuthBtnList() {
+        return authBtnList;
+    }
+
+    public void setAuthBtnList(HashSet<String> authBtnList) {
+        this.authBtnList = authBtnList;
     }
 }

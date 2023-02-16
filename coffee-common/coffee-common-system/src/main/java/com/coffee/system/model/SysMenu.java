@@ -1,6 +1,7 @@
 package com.coffee.system.model;
 
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
@@ -23,7 +24,10 @@ public class SysMenu implements Serializable {
     private Timestamp createTime;
     private Timestamp updateTime;
     private Integer status;
+    private Integer display;
     private String authCode;
+    @TableField(exist = false)
+    private String sysRoleCode;
      /**
      * 是否删除
      */

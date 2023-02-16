@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.coffee.system.mapper.SysMenuMapper">
-
+        <resultMap id="sysMenu" type="com.coffee.system.model.SysMenu">
+            <id column="id" property="id"/>
+            <result column="parent_id" property="parentId" />
+            <result column="sys_menu_name" property="sysMenuName" />
+            <result column="sys_menu_code" property="sysMenuCode" />
+            <result column="sys_menu_url" property="sysMenuUrl" />
+            <result column="sys_menu_component" property="sysMenuComponent" />
+            <result column="sys_menu_type" property="sysMenuType" />
+            <result column="sys_menu_icon" property="sysMenuIcon" />
+            <result column="sys_menu_order" property="sysMenuOrder" />
+            <result column="path" property="path" />
+            <result column="sys_menu_desc" property="sysMenuDesc" />
+            <result column="create_time" property="createTime" />
+            <result column="update_time" property="updateTime" />
+            <result column="status" property="status" />
+            <result column="display" property="display" />
+            <result column="deleted" property="deleted" />
+            <result column="sys_role_code" property="sysRoleCode" />
+        </resultMap>
     <select id="getSysMenuByRoleId" resultType="com.coffee.system.model.SysMenu">
         SELECT
                 DISTINCT
                 sm.id,
-                sm.prent_id,
+                sm.parent_id,
                 sm.sys_menu_name,
                 sm.sys_menu_code,
                 sm.sys_menu_url,
@@ -29,8 +47,8 @@
             </foreach>
         ORDER BY sm.sys_menu_order ASC
     </select>
-    <select id="getSysMenuByUserId" resultType="com.coffee.system.model.SysMenu">
-        SELECT DISTINCT sm.* FROM
+    <select id="getSysMenuByUserId" resultMap="sysMenu">
+        SELECT DISTINCT sm.*,sr.sys_role_code FROM
             sys_menu AS sm
                 INNER JOIN
             sys_role_menu AS srm
