@@ -7,6 +7,7 @@
             <result column="sys_menu_name" property="sysMenuName" />
             <result column="sys_menu_code" property="sysMenuCode" />
             <result column="sys_menu_url" property="sysMenuUrl" />
+            <result column="sys_menu_url_action" property="sysMenuUrlAction" />
             <result column="sys_menu_component" property="sysMenuComponent" />
             <result column="sys_menu_type" property="sysMenuType" />
             <result column="sys_menu_icon" property="sysMenuIcon" />
@@ -28,6 +29,7 @@
                 sm.sys_menu_name,
                 sm.sys_menu_code,
                 sm.sys_menu_url,
+                sm.sys_menu_url_action
                 sm.sys_menu_component,
                 sm.sys_menu_type,
                 sm.sys_menu_icon,

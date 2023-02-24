@@ -46,4 +46,15 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     public List<SysMenu> getSysMenuByUserId(Long uid) {
         return baseMapper.getSysMenuByUserId(uid);
     }
+
+    @Override
+    public boolean save(SysMenu entity) {
+        SysMenu pSysMenu = baseMapper.selectById(entity.getParentId());
+        if (pSysMenu.getSysMenuType() != 2){
+            super.save(entity);
+            entity.setPath(pSysMenu.getPath()+"_"+entity.getId());
+            return super.updateById(entity);
+        }
+        return false;
+    }
 }

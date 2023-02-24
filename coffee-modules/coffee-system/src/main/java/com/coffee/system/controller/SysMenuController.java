@@ -44,6 +44,8 @@ public class SysMenuController {
 
     @PostMapping
     public R<?> insert(@RequestBody SysMenu sysMenu){
+        System.out.println(sysMenu);
+      //  sysMenuService.save(sysMenu)
         return R.ok(sysMenuService.save(sysMenu));
     }
 

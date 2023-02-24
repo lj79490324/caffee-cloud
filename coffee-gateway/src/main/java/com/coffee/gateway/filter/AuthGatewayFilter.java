@@ -58,22 +58,22 @@ public class AuthGatewayFilter implements GlobalFilter, Ordered {
             //验证访问权限
             flag = authService.checkPermission(token, UrlUtils.removeServerNamePrefix(path), request.getMethodValue());
         }catch (Exception e){
-            return unauthorizedResponse(exchange,Constant.TOKEN_ERROR_CODE, "网关信息:"+e.getMessage());
+            return unauthorizedResponse(exchange,HttpStatus.UNAUTHORIZED,Constant.TOKEN_ERROR_CODE, "网关信息:"+e.getMessage());
         }
         //开发模式，flag直接放行
         if (true){
             return chain.filter(exchange);
         }else {
-            return unauthorizedResponse(exchange,Constant.PERMISSION_DENIED_CODE, "网关信息:无访问权限，请联系管理员");
+            return unauthorizedResponse(exchange,HttpStatus.OK,Constant.PERMISSION_DENIED_CODE, "网关信息:无访问权限，请联系管理员");
         }
 
     }
 
 
-    private Mono<Void> unauthorizedResponse(ServerWebExchange exchange, int code,String msg) {
+    private Mono<Void> unauthorizedResponse(ServerWebExchange exchange,HttpStatus httpStatus, int code,String msg) {
         log.error("[鉴权异常处理]请求路径:{}", exchange.getRequest().getPath());
         ServerHttpResponse response = exchange.getResponse();
-        response.setStatusCode(HttpStatus.UNAUTHORIZED);
+        response.setStatusCode(httpStatus);
         String contentType = RequestUtils.getHeaderByKey(exchange.getRequest(), "Content-Type");
         if (contentType != null) {
             response.getHeaders().add(HttpHeaders.CONTENT_TYPE, contentType);

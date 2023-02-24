@@ -60,7 +60,7 @@ public class AuthService {
                 });
                 //设置只要登录后可以访问的白名单
                 for (SysMenu sysMenu:sysMenuList){
-                    if (UrlUtils.isMatchesNotMicoServer(removeServerNamePrefix, sysMenu.getSysMenuUrl())){
+                    if (UrlUtils.isMatchesNotMicoServer(removeServerNamePrefix, sysMenu.getSysMenuUrl()) && methodValue.equalsIgnoreCase(sysMenu.getSysMenuUrlAction())){
                         hasPer = true;
                         break;
                     }
