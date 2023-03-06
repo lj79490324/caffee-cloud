@@ -9,8 +9,10 @@ import com.coffee.system.mapper.SysMenuMapper;
 import com.coffee.system.model.SysMenu;
 import com.coffee.system.service.SysMenuService;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -49,12 +51,35 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
 
     @Override
     public boolean save(SysMenu entity) {
+        //如果authCode为空，需要手动添加
+        if (!StringUtils.hasLength(entity.getAuthCode())){
+           entity.setAuthCode(entity.getSysMenuCode()+"_code");
+        }
         SysMenu pSysMenu = baseMapper.selectById(entity.getParentId());
+        //判断上级文件夹的关系
+        if ((entity.getSysMenuType() ==2 && pSysMenu.getSysMenuType() != 0) || (Objects.nonNull(entity.getParentId()) && pSysMenu.getSysMenuType() != 1)){
+                return false;
+        }
         if (pSysMenu.getSysMenuType() != 2){
             super.save(entity);
             entity.setPath(pSysMenu.getPath()+"_"+entity.getId());
             return super.updateById(entity);
         }
         return false;
+    }
+
+    @Override
+    public boolean updateById(SysMenu entity) {
+        if (entity.getId() == null) return false;
+        SysMenu currentMenu = super.getById(entity.getId());
+        //判断是否是更新父级菜单
+        if (!Objects.equals(currentMenu.getParentId(), entity.getParentId())){
+            SysMenu pSysMenu = baseMapper.selectById(entity.getParentId());
+            //此处需要判断上级文件夹的关系
+            if (pSysMenu.getSysMenuType()== 2||(entity.getSysMenuType() ==2 && pSysMenu.getSysMenuType() != 0) || (Objects.nonNull(entity.getParentId()) && pSysMenu.getSysMenuType() != 1)){
+                return false;
+            }
+        }
+        return super.updateById(entity);
     }
 }

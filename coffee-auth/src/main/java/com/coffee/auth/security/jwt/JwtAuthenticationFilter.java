@@ -4,6 +4,7 @@ import com.coffee.auth.contanst.SecurityUrlParam;
 import com.coffee.auth.security.model.SecurityUserDetails;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -55,13 +57,21 @@ public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFil
         if (postOnly && !request.getMethod().equalsIgnoreCase("POST")){
             throw new AuthenticationServiceException("认证方法不允许是POST之外的方法");
         }
-        //从请求体中获取账号和密码
-        Map<String,String> map = new ObjectMapper().readValue(request.getInputStream(), new TypeReference<Map<String,String>>() {
-            @Override
-            public Type getType() {
-                return super.getType();
-            }
-        });
+        //从请求体中获取账号和密码、
+        Map<String,String> map = null;
+
+        try {
+             map = new ObjectMapper().readValue(request.getInputStream(), new TypeReference<Map<String,String>>() {
+                @Override
+                public Type getType() {
+                    return super.getType();
+                }
+            });
+        }catch (MismatchedInputException e){
+            e.printStackTrace();
+            map = new HashMap<>();
+        }
+
         String userName = map.get(USER_NAME);
         String password = map.get(PASSWORD);
 

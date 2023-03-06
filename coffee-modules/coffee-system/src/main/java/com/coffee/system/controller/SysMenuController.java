@@ -46,11 +46,13 @@ public class SysMenuController {
     public R<?> insert(@RequestBody SysMenu sysMenu){
         System.out.println(sysMenu);
       //  sysMenuService.save(sysMenu)
+
         return R.ok(sysMenuService.save(sysMenu));
     }
 
     @PutMapping
     public R<?> update(@RequestBody SysMenu sysMenu){
+        System.out.println(sysMenu);
         return R.ok(sysMenuService.updateById(sysMenu));
     }
 
