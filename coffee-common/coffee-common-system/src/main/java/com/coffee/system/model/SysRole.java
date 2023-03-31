@@ -1,5 +1,7 @@
 package com.coffee.system.model;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,7 +26,10 @@ public class SysRole {
     private String path;
     private String sysRoleDesc;
     private Integer status;
+    @TableField(fill = FieldFill.INSERT)
     private Timestamp createTime;
+    @TableField(fill = FieldFill.UPDATE)
+    private Timestamp updateTime;
     /**
      * 是否删除
      */

@@ -5,9 +5,7 @@ import com.coffee.common.core.R;
 import com.coffee.system.model.SysRole;
 import com.coffee.system.service.SysRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,4 +22,27 @@ public class SysRoleController {
     }
 
 
+    @GetMapping("/{id}")
+    public R<SysRole> getOne(@PathVariable("id") Integer id){
+        return R.ok(sysRoleService.getById(id));
+    }
+    /**
+     * 校验角色名和角色编码是否存在
+     * @param sysRole 角色参数
+     * @return true: 不存在    false：存在
+     */
+    @PostMapping("validate")
+    public R<Boolean> validate(@RequestBody SysRole sysRole){
+        long count = sysRoleService.count(new QueryWrapper<SysRole>(sysRole));
+        if (count > 0){
+           return R.ok(false);
+        }
+        return R.ok(true);
+    }
+
+
+    @PostMapping
+    public R<Boolean> save(@RequestBody SysRole sysRole){
+        return R.ok(sysRoleService.save(sysRole));
+    }
 }

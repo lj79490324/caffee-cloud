@@ -6,6 +6,7 @@ import com.coffee.common.core.PageData;
 import com.coffee.common.core.PageInfo;
 import com.coffee.common.core.R;
 import com.coffee.system.model.SysMenu;
+import com.coffee.system.model.SysRole;
 import com.coffee.system.service.SysMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,10 @@ public class SysMenuController {
     @GetMapping("get")
     public R<List<SysMenu>> getAllMenu(){
         return R.ok(sysMenuService.list(new QueryWrapper<SysMenu>(null).orderByAsc("sys_menu_order")));
+    }
+    @GetMapping("/{id}")
+    public R<SysMenu> getOne(@PathVariable("id") Integer id){
+        return R.ok(sysMenuService.getById(id));
     }
 
     @GetMapping("url")
@@ -45,8 +50,6 @@ public class SysMenuController {
     @PostMapping
     public R<?> insert(@RequestBody SysMenu sysMenu){
         System.out.println(sysMenu);
-      //  sysMenuService.save(sysMenu)
-
         return R.ok(sysMenuService.save(sysMenu));
     }
 
