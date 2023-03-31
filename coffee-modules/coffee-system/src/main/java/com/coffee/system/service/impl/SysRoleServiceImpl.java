@@ -32,6 +32,8 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
             SysRole sysRole = baseMapper.selectById(entity.getParentId());
             if (sysRole != null){
                 entity.setSysRoleCode(sysRole.getPath()+"_"+entity.getId());
+            }else {
+                entity.setPath("1_"+entity.getPath());
             }
             if (super.updateById(entity)){
                 flag = true;
