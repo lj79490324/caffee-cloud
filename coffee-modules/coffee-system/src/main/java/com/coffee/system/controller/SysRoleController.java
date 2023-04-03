@@ -42,7 +42,7 @@ public class SysRoleController {
 
 
     @PostMapping
-    public R<Boolean> save(@RequestBody SysRole sysRole){
-        return R.ok(sysRoleService.save(sysRole));
+    public R<Boolean> saveOrUpdate(@RequestBody SysRole sysRole){
+        return R.ok(sysRoleService.saveOrUpdate(sysRole));
     }
 }

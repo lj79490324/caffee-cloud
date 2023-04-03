@@ -48,15 +48,19 @@ public class SysMenuController {
     }
 
     @PostMapping
-    public R<?> insert(@RequestBody SysMenu sysMenu){
+    public R<?> saveOrUpdate(@RequestBody SysMenu sysMenu){
         System.out.println(sysMenu);
-        return R.ok(sysMenuService.save(sysMenu));
-    }
 
-    @PutMapping
-    public R<?> update(@RequestBody SysMenu sysMenu){
-        System.out.println(sysMenu);
+        if (sysMenu.getId() == null){
+            return R.ok(sysMenuService.save(sysMenu));
+        }
         return R.ok(sysMenuService.updateById(sysMenu));
     }
+
+//    @PutMapping
+//    public R<?> update(@RequestBody SysMenu sysMenu){
+//        System.out.println(sysMenu);
+//        return R.ok(sysMenuService.updateById(sysMenu));
+//    }
 
 }

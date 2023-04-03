@@ -26,19 +26,30 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     }
 
     @Override
-    public boolean save(SysRole entity) {
+    public boolean saveOrUpdate(SysRole entity) {
         boolean flag = false;
-        if (super.save(entity)){
-            SysRole sysRole = baseMapper.selectById(entity.getParentId());
-            if (sysRole != null){
-                entity.setSysRoleCode(sysRole.getPath()+"_"+entity.getId());
-            }else {
-                entity.setPath("1_"+entity.getPath());
+        if (entity.getId() == null){
+            //id不存在，保存操作
+            if (super.save(entity)){
+                SysRole sysRole = baseMapper.selectById(entity.getParentId());
+                if (sysRole != null){
+                    entity.setPath(sysRole.getPath()+"_"+entity.getId());
+                }else {
+                    entity.setPath("1_"+entity.getPath());
+                }
+                if (super.updateById(entity)){
+                    flag = true;
+                }
             }
-            if (super.updateById(entity)){
-                flag = true;
-            }
+        }else {
+            //id存在，更新操作
+            //父id和code不允许更新,否则会打乱原有权限树
+            entity.setSysRoleCode(null);
+            entity.setParentId(null);
+            entity.setPath(null);
+            flag = updateById(entity);
         }
         return flag;
     }
+
 }
