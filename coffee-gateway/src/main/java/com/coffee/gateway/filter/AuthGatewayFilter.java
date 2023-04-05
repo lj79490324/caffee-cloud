@@ -58,6 +58,7 @@ public class AuthGatewayFilter implements GlobalFilter, Ordered {
             //验证访问权限
             flag = authService.checkPermission(token, UrlUtils.removeServerNamePrefix(path), request.getMethodValue());
         }catch (Exception e){
+            e.printStackTrace();
             return unauthorizedResponse(exchange,HttpStatus.UNAUTHORIZED,Constant.TOKEN_ERROR_CODE, "网关信息:"+e.getMessage());
         }
         //开发模式，flag直接放行

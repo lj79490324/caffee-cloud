@@ -9,4 +9,30 @@
         SELECT sgr.role_id FROM  sys_group_role sgr LEFT JOIN sys_user_group sug ON sgr.group_id = sug.id LEFT JOIN sys_user_group_conn sugc on  sug.id = sugc.group_id WHERE sugc.user_id = #{userId}
     </select>
 
+    <select id="getSysRoleByUserInfo" resultType="com.coffee.system.model.SysRole">
+        SELECT
+            sr.id,
+            sr.parent_id,
+            sr.sys_role_name,
+            sr.sys_role_code,
+            sr.path,
+            sr.sys_role_desc,
+            sr.status,
+            sr.update_time,
+            sr.create_time,
+            sr.deleted
+        FROM
+            sys_user AS su
+                RIGHT JOIN
+            sys_user_role_conn AS surc
+            ON
+                su.id = surc.user_id
+                RIGHT JOIN
+            sys_role AS sr
+            ON
+                surc.role_id = sr.id
+            ${ew.customSqlSegment}
+        ORDER BY
+            sr.id
+    </select>
 </mapper>

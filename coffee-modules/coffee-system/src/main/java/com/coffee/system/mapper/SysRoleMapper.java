@@ -1,6 +1,8 @@
 package com.coffee.system.mapper;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.coffee.system.model.SysRole;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -26,4 +28,11 @@ public interface SysRoleMapper extends BaseMapper<SysRole> {
      * @return 角色id
      */
     List<Long> getSysRoleIdByGroupUser(@Param("userId") Long userId);
+
+    /**
+     * 通过用户信息查询信息
+     * @param queryWrapper 查询构建器
+     * @return
+     */
+    List<SysRole> getSysRoleByUserInfo(@Param(Constants.WRAPPER) QueryWrapper queryWrapper);
 }

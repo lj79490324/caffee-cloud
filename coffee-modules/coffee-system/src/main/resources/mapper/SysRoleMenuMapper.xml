@@ -10,10 +10,29 @@
             <result property="menuId" column="menu_id" jdbcType="INTEGER"/>
             <result property="roleMenuType" column="role_menu_type" jdbcType="TINYINT"/>
             <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,role_id,menu_id,
         role_menu_type,create_time
     </sql>
+    <select id="getSysRoleMenuDtoByRid" resultType="com.coffee.system.dto.SysRoleMenuDto">
+        SELECT
+            sys_role_menu.*,
+            sys_menu.parent_id,
+            sys_menu.sys_menu_name,
+            sys_menu.sys_menu_icon
+        FROM
+            sys_role_menu
+            LEFT JOIN
+            sys_menu
+            ON
+                sys_role_menu.menu_id = sys_menu.id
+        WHERE
+            sys_role_menu.role_id = #{rid}
+        ORDER BY
+            sys_role_menu.menu_id,
+            sys_menu.parent_id
+    </select>
 </mapper>

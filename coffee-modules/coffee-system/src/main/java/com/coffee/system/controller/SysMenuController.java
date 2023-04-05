@@ -8,11 +8,13 @@ import com.coffee.common.core.R;
 import com.coffee.system.model.SysMenu;
 import com.coffee.system.model.SysRole;
 import com.coffee.system.service.SysMenuService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("sysMenu")
 public class SysMenuController {
@@ -56,11 +58,5 @@ public class SysMenuController {
         }
         return R.ok(sysMenuService.updateById(sysMenu));
     }
-
-//    @PutMapping
-//    public R<?> update(@RequestBody SysMenu sysMenu){
-//        System.out.println(sysMenu);
-//        return R.ok(sysMenuService.updateById(sysMenu));
-//    }
 
 }

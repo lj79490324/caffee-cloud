@@ -1,5 +1,6 @@
 package com.coffee.system.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import com.coffee.system.mapper.SysRoleMapper;
@@ -8,6 +9,7 @@ import com.coffee.system.service.SysRoleService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 角色service
@@ -23,6 +25,11 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     @Override
     public List<Long> getSysRoleIdByGroupUser(Long userId) {
         return baseMapper.getSysRoleIdByGroupUser(userId);
+    }
+
+    @Override
+    public List<SysRole> getSysRoleByUserInfo(Map<String, Object> param) {
+        return baseMapper.getSysRoleByUserInfo(new QueryWrapper<>().allEq(param,false));
     }
 
     @Override
