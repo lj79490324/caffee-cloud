@@ -47,7 +47,7 @@ public class JwtGlobalAuthorizationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         //白名单不校验,除开白名单的所有的都要进行token校验
-        if (!request.getRequestURI().equals(SecurityUrlParam.JWT_LOGIN_URL)){
+        if (!request.getRequestURI().equals(SecurityUrlParam.JWT_LOGIN_URL) && !request.getRequestURI().equals("/v3/api-docs")){
             String headToken = "";
             //从http header中获取token
             if (StringUtils.isNotEmpty(request.getHeader(JwtUtil.TOKEN_HEADER))){
