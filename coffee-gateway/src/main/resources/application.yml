@@ -18,6 +18,7 @@ spring:
     import:
       - optional:nacos:redis.yaml?group=DATASOURCE_GROUP
       - optional:nacos:coffee-gateway-service.yaml?group=GATEWAY_GROUP
+      - optional:nacos:coffee-gateway-knife4j.yaml?group=GATEWAY_GROUP
       - optional:nacos:coffee-gateway-service-dev.yaml?group=GATEWAY_GROUP&refreshEnabled=true
   profiles:
     active: dev

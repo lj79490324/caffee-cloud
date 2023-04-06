@@ -14,9 +14,11 @@ spring:
         group: MODULES_GROUP
   config:
     import:
+      - optional:nacos:knife4j-boot.yaml?group=DEFAULT_GROUP
       - optional:nacos:mysql.yaml?group=DATASOURCE_GROUP
       - optional:nacos:redis.yaml?group=DATASOURCE_GROUP
       - optional:nacos:coffee-system.yaml?group=MODULES_GROUP
+
 #  profiles:
 #    active: dev
 

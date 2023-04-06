@@ -2,8 +2,6 @@ package com.coffee.gateway.filter;
 
 import com.coffee.gateway.order.OrderConstant;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.cloud.gateway.filter.factory.rewrite.CachedBodyOutputMessage;
@@ -99,8 +97,7 @@ public class LogGatewayFilter implements GlobalFilter, Ordered {
                 }
                 return httpHeaders;
             }
-
-            @NotNull
+            
             @Override
             public Flux<DataBuffer> getBody() {
                 return outputMessage.getBody();
