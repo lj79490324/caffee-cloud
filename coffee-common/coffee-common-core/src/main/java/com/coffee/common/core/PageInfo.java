@@ -1,6 +1,5 @@
 package com.coffee.common.core;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.v3.oas.annotations.media.Schema;
 
@@ -11,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * @version v1.0
  * @date 2022/9/1 18:16
  */
+@Schema(description = "分页参数")
 public class PageInfo {
 
     public PageInfo() {

@@ -2,14 +2,13 @@ package com.coffee.common.core;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-import java.util.HashMap;
-
 /**
  * 请求返回值
  * @author rabit
  * @version v1.0
  * @date 2022/8/31 19:18
  */
+@Schema(description = "返回结果")
 public class R<T> {
 
     @Schema(description = "接口运行结果状态码")

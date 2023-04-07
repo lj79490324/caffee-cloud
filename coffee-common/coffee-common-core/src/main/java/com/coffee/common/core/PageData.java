@@ -12,6 +12,7 @@ import java.util.List;
  * @version v1.0
  * @date 2022/9/1 18:48
  */
+@Schema(description = "分页返回结果")
 public class PageData<T> implements Serializable {
 
     private static final long serialVersionUID = 1L;

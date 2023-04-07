@@ -20,6 +20,7 @@
         <module>coffee-common-feign</module>
         <module>coffee-common-system</module>
         <module>coffee-common-core</module>
+        <module>coffee-global-config</module>
     </modules>
     <dependencyManagement>
         <dependencies>
