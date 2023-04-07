@@ -8,13 +8,19 @@ package com.coffee.common.core;
  */
 public class ServiceNameConstant {
 
-    //系统服务名称
+    /**
+     * 系统服务名称
+     */
     public static final String SYSTEM_SERVICE_NAME = "coffee-system";
 
 
-    //鉴权服务名称
+    /**
+     * 鉴权服务名称
+     */
     public static final String AUTH_SERVICE_NAME = "coffee-auth";
 
-    //网关服务名称
+    /**
+     * 网关服务名称
+     */
     public static final String GATEWAY_SERVICE_NAME = "coffee-gateway-service";
 }

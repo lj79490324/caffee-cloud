@@ -58,8 +58,10 @@ public class JwtUtil {
     private static String generateToken(Claims claims) {
         return Jwts.builder()
                 .setClaims(claims)
-                .setExpiration(new Date(System.currentTimeMillis() + TTL)) // 到期时间
-                .signWith(SignatureAlgorithm.HS256, SECRET_KEY) // 签名
+                // 到期时间
+                .setExpiration(new Date(System.currentTimeMillis() + TTL))
+                // 签名
+                .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
                 .compact();
     }
 
@@ -126,12 +128,17 @@ public class JwtUtil {
      * 获取角色
      *
      * @param claims token信息
-     * @return 全量列表
+     * @return 权限列表
      */
     public static List<GrantedAuthority> getAuthorities(Claims claims) {
         return claims.get(AUTHORITIES, List.class);
     }
 
+    /**
+     * 获取token中的权限字符串
+     * @param claims token信息
+     * @return 权限列字符串
+     */
     public static List<String> getAuthoritiesStr(Claims claims) {
         return claims.get(AUTHORITIES, List.class);
     }

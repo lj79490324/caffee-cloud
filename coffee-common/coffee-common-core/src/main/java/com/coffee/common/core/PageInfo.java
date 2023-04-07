@@ -2,6 +2,7 @@ package com.coffee.common.core;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 /**
  *
@@ -21,11 +22,13 @@ public class PageInfo {
         this.keyWords = keyWords;
     }
 
-    //当前显示条数
+    @Schema(description = "当前显示条数",defaultValue = "10")
     private Integer pageSize = 10;
-    //页码
+
+    @Schema(description = "页码",defaultValue = "0")
     private Integer pageNum = 0;
-    //搜索关键字
+
+    @Schema(description = "搜索关键字",requiredMode = Schema.RequiredMode.NOT_REQUIRED)
     private String keyWords;
 
     public Integer getPageSize() {

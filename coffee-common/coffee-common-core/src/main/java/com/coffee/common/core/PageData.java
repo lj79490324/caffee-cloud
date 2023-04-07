@@ -1,6 +1,7 @@
 package com.coffee.common.core;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.io.Serializable;
 import java.util.List;
@@ -15,15 +16,19 @@ public class PageData<T> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    //返回的数据
+    @Schema(description = "数据列表")
     private List<T> list;
-    //一共多少条数据
+
+    @Schema(description = "数据列表总条数")
     private long total;
-    //每页显示多少条
+
+    @Schema(description = "数据列表单页条数",defaultValue = "10")
     private long size = 10;
-    //当前查询页码
+
+    @Schema(description = "当前查询页码",defaultValue = "0")
     private long pageNum;
-    //一共多少页
+
+    @Schema(description = "当前数据总页数",defaultValue = "0")
     private long pages;
 
     public PageData() {
@@ -77,6 +82,12 @@ public class PageData<T> implements Serializable {
         this.pages = pages;
     }
 
+    /**
+     * mp的分页封装对象转换为自己定义的PageData对象
+     * @param page mp的分页封装对象
+     * @param <T> 封装的对象类型
+     * @return 转换后的PageData对象
+     */
     public static <T> PageData<T> covertData(IPage<T> page){
        return new PageData<>(page.getRecords(),page.getTotal(),page.getSize(),page.getCurrent(),page.getPages());
     }

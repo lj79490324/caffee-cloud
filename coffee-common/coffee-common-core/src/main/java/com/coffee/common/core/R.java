@@ -1,5 +1,7 @@
 package com.coffee.common.core;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.util.HashMap;
 
 /**
@@ -10,8 +12,11 @@ import java.util.HashMap;
  */
 public class R<T> {
 
+    @Schema(description = "接口运行结果状态码")
     private int code;
+    @Schema(description = "程序运行结果提示")
     private String msg;
+    @Schema(description = "程序最终返回数据，如果没有则为空")
     private T data;
 
     public R() {

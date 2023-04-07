@@ -16,9 +16,9 @@ public class SHAUtil {
 
     /***
      * SHA加密（比MD5更安全）
-     * @param data
-     * @return
-     * @throws Exception
+     * @param data 加密的字节码数据
+     * @return 加密后的结果
+     * @throws Exception 加密过程中会抛出异常
      */
     public static byte[] encryptSHA(byte[] data) throws Exception{
         MessageDigest sha = MessageDigest.getInstance(KEY_SHA);
@@ -27,7 +27,12 @@ public class SHAUtil {
     }
 
 
-    public static String SHAEncrypt(final String content) {
+    /**
+     * SHA加密
+     * @param content 需要加密字符串
+     * @return 加密后的结果
+     */
+    public static String SHAEncrypt(String content) {
         try {
             MessageDigest sha = MessageDigest.getInstance(KEY_SHA);
             byte[] sha_byte = sha.digest(content.getBytes());
@@ -45,8 +50,11 @@ public class SHAUtil {
     }
 
 
-
-    //SHA-256加密
+    /**
+     * SHA-256加密
+     * @param sourceStr 加密字符串
+     * @return 加密后的结果
+     */
     public static String SHA256Encrypt(String sourceStr) {
         MessageDigest md = null;
         try {
@@ -63,6 +71,12 @@ public class SHAUtil {
         return null;
     }
 
+
+    /**
+     * 将加密后字节码转换为字符串
+     * @param origBytes 字节码
+     * @return 返回加密后的对象
+     */
     private static String getDigestStr(byte[] origBytes) {
         String tempStr = null;
         StringBuilder stb = new StringBuilder();
