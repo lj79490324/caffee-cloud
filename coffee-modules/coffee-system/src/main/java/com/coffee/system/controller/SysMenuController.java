@@ -8,12 +8,14 @@ import com.coffee.common.core.R;
 import com.coffee.system.model.SysMenu;
 import com.coffee.system.model.SysRole;
 import com.coffee.system.service.SysMenuService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "系统菜单")
 @Slf4j
 @RestController
 @RequestMapping("sysMenu")
