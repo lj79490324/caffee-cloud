@@ -370,8 +370,8 @@ public interface RedisCache {
     void rangeRemove(String key, Long start, Long end);
 
     /**
-     * 返回当前redisTemplate
-     *
+     * 返回RedisTemplate
+     * @return
      */
     RedisTemplate<Object,Object> getRedisTemplate();
 }

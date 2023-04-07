@@ -11,6 +11,10 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 
+/**
+ * 对外暴露的redis服务
+ * @author rabit
+ */
 @Component
 public class RedisService implements RedisCache {
 
