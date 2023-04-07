@@ -34,5 +34,5 @@ public interface SysRoleMapper extends BaseMapper<SysRole> {
      * @param queryWrapper 查询构建器
      * @return
      */
-    List<SysRole> getSysRoleByUserInfo(@Param(Constants.WRAPPER) QueryWrapper queryWrapper);
+    List<SysRole> getSysRoleListByUserId(@Param("userId") Long userId);
 }

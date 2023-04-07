@@ -1,14 +1,12 @@
 package com.coffee.system.service;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.toolkit.Constants;
+
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.coffee.system.model.SysRole;
-import org.apache.ibatis.annotations.Param;
 
 
+import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 用户角色
@@ -29,5 +27,5 @@ public interface SysRoleService extends IService<SysRole> {
      */
     List<Long> getSysRoleIdByGroupUser(Long userId);
 
-    List<SysRole> getSysRoleByUserInfo(Map<String,Object> param);
+    LinkedHashSet<SysRole> getSysRoleListByUserId(Long userId);
 }

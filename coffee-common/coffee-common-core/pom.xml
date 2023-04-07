@@ -12,10 +12,7 @@
     <description>
         coffee cloud的核心通用
     </description>
-    <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-    </properties>
+
     <dependencies>
         <!-- Spring Context Support -->
         <dependency>

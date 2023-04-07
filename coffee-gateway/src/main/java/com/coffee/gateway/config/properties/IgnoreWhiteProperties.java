@@ -23,6 +23,8 @@ public class IgnoreWhiteProperties {
         this.ignoreList.add("/jwt/logout");
         this.ignoreList.add("/user/info");
         this.ignoreList.add("/user/menu");
+        this.ignoreList.add("/doc.html");
+        this.ignoreList.add("/v3/api-docs");
     }
 
     //存储网关不检查的白名单

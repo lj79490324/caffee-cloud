@@ -15,6 +15,7 @@ spring:
 
   config:
     import:
+      - optional:nacos:knife4j-boot.yaml?group=DEFAULT_GROUP
       - optional:nacos:redis.yaml?group=DATASOURCE_GROUP
       - optional:nacos:coffee-auth.yaml?group=DEFAULT_GROUP
       - optional:nacos:logback-spring.xml?group=DEFAULT_GROUP

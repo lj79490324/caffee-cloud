@@ -8,8 +8,11 @@ import com.coffee.system.model.SysRole;
 import com.coffee.system.service.SysRoleService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * 角色service
@@ -28,8 +31,15 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     }
 
     @Override
-    public List<SysRole> getSysRoleByUserInfo(Map<String, Object> param) {
-        return baseMapper.getSysRoleByUserInfo(new QueryWrapper<>().allEq(param,false));
+    public LinkedHashSet<SysRole> getSysRoleListByUserId(Long userId) {
+        LinkedHashSet<SysRole> set = new LinkedHashSet<>();
+        List<SysRole> list = baseMapper.getSysRoleListByUserId(userId);
+        set.addAll(list);
+        list.forEach(item-> {
+             List<SysRole> tmpLists = baseMapper.selectList(new QueryWrapper<SysRole>().likeRight("path", item.getPath()));
+             set.addAll(tmpLists);
+        });
+        return set;
     }
 
     @Override

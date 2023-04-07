@@ -43,7 +43,7 @@ public class CoffeeSecurityConfig {
         jwtGlobalAuthorizationFilter.setAuthenticationFailureHandler(coffeeGlobalAuthenticationFailureHandler);
         http.addFilterBefore(jwtGlobalAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
 
-        http.csrf().disable().apply(jwtAuthenticationConfig).and().authorizeRequests().antMatchers(SecurityUrlParam.JWT_LOGIN_URL).permitAll()
+        http.csrf().disable().apply(jwtAuthenticationConfig).and().authorizeRequests().antMatchers(SecurityUrlParam.JWT_LOGIN_URL,"/v3/api-docs").permitAll()
                 .and().authorizeRequests().anyRequest().authenticated();
         return http.build();
     }

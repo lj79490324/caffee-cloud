@@ -7,10 +7,11 @@ import com.coffee.system.model.SysMenu;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+/**
+ * @author rabit
+ */
 @FeignClient(contextId = "routerSysMenuService",value = ServiceNameConstant.SYSTEM_SERVICE_NAME,path = "sysMenu",fallbackFactory = RouterSysMenuFallbackFactory.class)
 public interface RouterSysMenuService {
 
