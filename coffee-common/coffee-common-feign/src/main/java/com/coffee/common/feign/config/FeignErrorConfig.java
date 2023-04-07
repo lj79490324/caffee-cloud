@@ -10,6 +10,10 @@ import org.springframework.context.annotation.Configuration;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Feign的错误配置，日志
+ * @author rabit
+ */
 @Slf4j
 @Configuration
 public class FeignErrorConfig implements ErrorDecoder {

@@ -7,6 +7,10 @@ import org.springframework.context.annotation.Configuration;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 
+/**
+ * Feign重试配置
+ * @author rabit
+ */
 @Slf4j
 @Configuration
 public class FeignRetrieverConfig extends Retryer.Default{
