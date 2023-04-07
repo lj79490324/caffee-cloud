@@ -14,7 +14,7 @@
     <artifactId>coffee-modules</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>coffee-test</module>
+<!--        <module>coffee-test</module>-->
         <module>coffee-system</module>
     </modules>
 
