@@ -13,10 +13,6 @@
     <artifactId>coffee-datasource-mysql</artifactId>
     <description>MySQL数据源配置</description>
 
-    <properties>
-<!--        <maven.compiler.source>17</maven.compiler.source>-->
-<!--        <maven.compiler.target>17</maven.compiler.target>-->
-    </properties>
     <dependencies>
         <dependency>
             <groupId>com.baomidou</groupId>
