@@ -1,12 +1,11 @@
 package com.coffee.system.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.coffee.common.core.PageData;
 import com.coffee.common.core.PageInfo;
 import com.coffee.common.core.R;
+import com.coffee.system.dto.SysMenuDto;
 import com.coffee.system.model.SysMenu;
-import com.coffee.system.model.SysRole;
 import com.coffee.system.service.SysMenuService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
@@ -47,7 +46,7 @@ public class SysMenuController {
 
 
     @GetMapping("/all/{userId}")
-    public R<List<SysMenu>> getMenuByUserId(@PathVariable("userId") Long userId){
+    public R<List<SysMenuDto>> getMenuByUserId(@PathVariable("userId") Long userId){
         return R.ok(sysMenuService.getSysMenuByUserId(userId));
     }
 

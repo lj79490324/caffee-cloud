@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -13,7 +13,7 @@ import java.util.List;
 public class SysUserDto{
     private String userName;
     private String photo;
-    private Date time;
+    private LocalDateTime time;
     private List<String> roles;
 
     private List<String> authBtnList;

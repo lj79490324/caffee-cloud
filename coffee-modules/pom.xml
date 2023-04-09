@@ -63,6 +63,10 @@
                 <groupId>com.coffee</groupId>
                 <artifactId>coffee-datasource-mysql</artifactId>
             </dependency>
+            <dependency>
+                <groupId>com.coffee</groupId>
+                <artifactId>coffee-global-config</artifactId>
+            </dependency>
         </dependencies>
 
 

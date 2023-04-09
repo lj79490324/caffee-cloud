@@ -1,10 +1,10 @@
 package com.coffee.system.service;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.coffee.common.core.PageData;
 import com.coffee.common.core.PageInfo;
+import com.coffee.system.dto.SysMenuDto;
 import com.coffee.system.model.SysMenu;
 
 import java.util.List;
@@ -37,6 +37,6 @@ public interface SysMenuService extends IService<SysMenu> {
      * @param uid 用户id
      * @return 菜单列表
      */
-    List<SysMenu> getSysMenuByUserId(Long uid);
+    List<SysMenuDto> getSysMenuByUserId(Long uid);
 
 }

@@ -6,19 +6,17 @@ import com.coffee.auth.security.exception.TokenAuthenticationException;
 import com.coffee.auth.security.jwt.JwtAuthenticationToken;
 import com.coffee.auth.security.model.SecurityUserDetails;
 import com.coffee.common.core.utils.JwtUtil;
-import com.coffee.common.redis.service.RedisService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -39,7 +37,7 @@ public class JwtGlobalAuthorizationFilter extends OncePerRequestFilter {
 
     private RedisUserCache redisUserCache;
 
-    private ObjectMapper objectMapper = new ObjectMapper();
+    private ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
 
     private AuthenticationFailureHandler authenticationFailureHandler;
 
@@ -73,7 +71,7 @@ public class JwtGlobalAuthorizationFilter extends OncePerRequestFilter {
                 throw new TokenAuthenticationException("token异常");
             }
             // 解析token
-            String token = headToken.substring(JwtUtil.TOKEN_PREFIX.length());
+            String token = headToken.substring(JwtUtil.TOKEN_PREFIX.length()).trim();
             Claims claims = JwtUtil.parseToken(token);
             // 校验token是否过期
             if (JwtUtil.isExpiration(claims)) {

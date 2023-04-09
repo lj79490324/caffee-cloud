@@ -18,7 +18,7 @@
         <spring-boot.version>2.7.10</spring-boot.version>
         <spring-cloud-version>2021.0.6</spring-cloud-version>
         <spring-cloud-alibaba-version>2021.0.4.0</spring-cloud-alibaba-version>
-        <druid-version>1.2.11</druid-version>
+        <druid-version>1.2.16</druid-version>
         <dynamic-datasource-version>3.5.2</dynamic-datasource-version>
         <mybatis-plus-version>3.5.3</mybatis-plus-version>
         <lombok-version>1.18.24</lombok-version>
@@ -92,6 +92,11 @@
             </dependency>
             <dependency>
                 <groupId>com.coffee</groupId>
+                <artifactId>coffee-global-config</artifactId>
+                <version>${coffee-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.coffee</groupId>
                 <artifactId>coffee-common-system</artifactId>
                 <version>${coffee-version}</version>
             </dependency>
@@ -128,7 +133,6 @@
         <module>coffee-auth</module>
         <module>coffee-gateway</module>
         <module>coffee-modules</module>
-        <module>coffee-common/coffee-global-config</module>
     </modules>
 
     <build>

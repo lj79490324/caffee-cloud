@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.coffee.common.core.PageData;
 import com.coffee.common.core.PageInfo;
+import com.coffee.system.dto.SysMenuDto;
 import com.coffee.system.mapper.SysMenuMapper;
 import com.coffee.system.model.SysMenu;
 import com.coffee.system.service.SysMenuService;
@@ -45,7 +46,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     }
 
     @Override
-    public List<SysMenu> getSysMenuByUserId(Long uid) {
+    public List<SysMenuDto> getSysMenuByUserId(Long uid) {
         return baseMapper.getSysMenuByUserId(uid);
     }
 

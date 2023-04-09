@@ -1,6 +1,7 @@
 package com.coffee.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.coffee.system.dto.SysMenuDto;
 import com.coffee.system.model.SysMenu;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -17,5 +18,5 @@ public interface SysMenuMapper extends BaseMapper<SysMenu> {
      */
     List<SysMenu> getSysMenuByRoleId(Set<Long> roleIds);
 
-    List<SysMenu> getSysMenuByUserId(@Param("uid")Long uid);
+    List<SysMenuDto> getSysMenuByUserId(@Param("uid")Long uid);
 }

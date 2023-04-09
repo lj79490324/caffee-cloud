@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * 系统参数表
@@ -56,12 +56,12 @@ public class SysParam implements Serializable {
     /**
      * 参数创建时间
      */
-    private Date createTime;
+    private LocalDateTime createTime;
 
     /**
      * 参数更新时间
      */
-    private Date updateTime;
+    private LocalDateTime updateTime;
     /**
      * 是否删除
      */

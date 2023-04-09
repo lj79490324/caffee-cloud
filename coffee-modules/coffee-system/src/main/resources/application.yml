@@ -18,7 +18,9 @@ spring:
       - optional:nacos:mysql.yaml?group=DATASOURCE_GROUP
       - optional:nacos:redis.yaml?group=DATASOURCE_GROUP
       - optional:nacos:coffee-system.yaml?group=MODULES_GROUP
-
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
 #  profiles:
 #    active: dev
 

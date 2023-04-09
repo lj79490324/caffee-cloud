@@ -19,7 +19,6 @@
             <result column="status" property="status" />
             <result column="display" property="display" />
             <result column="deleted" property="deleted" />
-            <result column="sys_role_code" property="sysRoleCode" />
         </resultMap>
     <select id="getSysMenuByRoleId" resultType="com.coffee.system.model.SysMenu">
         SELECT
@@ -49,7 +48,7 @@
             </foreach>
         ORDER BY sm.sys_menu_order ASC
     </select>
-    <select id="getSysMenuByUserId" resultMap="sysMenu">
+    <select id="getSysMenuByUserId" resultType="com.coffee.system.dto.SysMenuDto">
         SELECT DISTINCT sm.*,sr.sys_role_code FROM
             sys_menu AS sm
                 LEFT JOIN

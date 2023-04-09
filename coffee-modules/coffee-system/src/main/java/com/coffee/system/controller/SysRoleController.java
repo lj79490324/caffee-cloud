@@ -36,8 +36,9 @@ public class SysRoleController {
         if (StringUtils.isEmpty(token)){
             return R.error("请求头错误");
         }
-        if (token.indexOf(JwtUtil.TOKEN_PREFIX) > 0){
-            token = token.substring(JwtUtil.TOKEN_PREFIX.length());
+
+        if ( token.startsWith(JwtUtil.TOKEN_PREFIX)){
+            token = token.substring(JwtUtil.TOKEN_PREFIX.length()).trim();
         }
         //从token中获取用户名称
         String username = JwtUtil.getUsername(token);

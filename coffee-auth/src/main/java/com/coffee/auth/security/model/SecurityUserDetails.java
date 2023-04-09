@@ -1,5 +1,6 @@
 package com.coffee.auth.security.model;
 
+import com.coffee.system.dto.SysMenuDto;
 import com.coffee.system.model.SysMenu;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,7 +20,7 @@ public class SecurityUserDetails implements UserDetails {
     // 4已锁定，3过期，2异常，1禁止登录，0正常
     private Integer status;
     //用户菜单
-    private List<SysMenu> sysMenuList;
+    private List<SysMenuDto> sysMenuList;
 
     private HashSet<String> roles;
 
@@ -80,11 +81,11 @@ public class SecurityUserDetails implements UserDetails {
         this.status = status;
     }
 
-    public List<SysMenu> getSysMenuList() {
+    public List<SysMenuDto> getSysMenuList() {
         return sysMenuList;
     }
 
-    public void setSysMenuList(List<SysMenu> sysMenuList) {
+    public void setSysMenuList(List<SysMenuDto> sysMenuList) {
         this.sysMenuList = sysMenuList;
     }
 

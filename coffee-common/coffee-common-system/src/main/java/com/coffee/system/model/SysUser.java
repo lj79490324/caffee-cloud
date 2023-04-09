@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 /**
  * @author rabit
@@ -21,9 +21,9 @@ public class SysUser implements Serializable {
     private Long detailsId;
     private String sysCode;
     private String nickName;
-    private Timestamp lastLoginTime;
+    private LocalDateTime lastLoginTime;
     private Long loginCount;
-    private Timestamp createTime;
+    private LocalDateTime createTime;
     private Integer status;
     /**
      * 是否删除

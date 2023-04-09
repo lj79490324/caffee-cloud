@@ -5,6 +5,7 @@ import com.coffee.auth.feign.RouterUserService;
 import com.coffee.auth.security.model.SecurityUserDetails;
 import com.coffee.common.core.Constant;
 import com.coffee.common.core.R;
+import com.coffee.system.dto.SysMenuDto;
 import com.coffee.system.model.SysMenu;
 import com.coffee.system.model.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,11 +38,10 @@ public class AuthUserDetailServiceImpl implements UserDetailsService {
         userDetails.setUsername(data.getUsername());
         userDetails.setPassword(data.getPassword());
         userDetails.setEnabled(true);
-        List<SysMenu> sysMenuList = loadSysMenuByUserId(data.getId());
+        List<SysMenuDto> sysMenuList = loadSysMenuByUserId(data.getId());
         HashSet<String> set = new HashSet<>();
         HashSet<String> menuBtn = new HashSet<>();
-        for (SysMenu item:sysMenuList) {
-            System.out.println(item.getSysRoleCode());
+        for (SysMenuDto item:sysMenuList) {
             set.add(item.getSysRoleCode());
             menuBtn.add(item.getAuthCode());
         }
@@ -52,8 +52,8 @@ public class AuthUserDetailServiceImpl implements UserDetailsService {
         return userDetails;
     }
 
-    private List<SysMenu> loadSysMenuByUserId(Long uid){
-        R<List<SysMenu>> res = routerSysMenuService.getMenuByUserId(uid);
+    private List<SysMenuDto> loadSysMenuByUserId(Long uid){
+        R<List<SysMenuDto>> res = routerSysMenuService.getMenuByUserId(uid);
         return res.getData();
     }
 
