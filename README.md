@@ -6,13 +6,24 @@
 # 工程简介
  > coffee-cloud 主模块
  > > coffee-auth 认证
+ > >
  > > coffee-common 通用组件
- > > coffee-depends 通用依赖
+ > > >
+ > > > coffee-common-core 全局核心依赖
+ > > >
  > > > coffee-datasource-redis Redis依赖模块
  > > >
  > > > coffee-datasource-mysql Mysql依赖
+ > > > 
+ > > > coffee-common-feign 远程调用模块
+ > > >
+ > > > coffee-common-system 系统相关bean定义
+ > > >
+ > > > coffee-global-config 全局配置模块
  > >
  > > coffee-modules  业务模块
+ > > >
+ > > > coffee-system 系统管理模块（用户，权限，菜单，角色）
  > >
  > > coffee-gateway 网关模块
 
