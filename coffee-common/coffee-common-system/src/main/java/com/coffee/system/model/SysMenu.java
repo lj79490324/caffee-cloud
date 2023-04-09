@@ -39,7 +39,7 @@ public class SysMenu extends BaseEntity implements Serializable {
     private String sysMenuIcon;
     @Schema(description = "菜单排序")
     private Integer sysMenuOrder;
-    @Schema(description = "数据路径")
+    @Schema(description = "数据路径",hidden = true)
     private String path;
     @Schema(description = "菜单描述")
     private String sysMenuDesc;
@@ -47,7 +47,7 @@ public class SysMenu extends BaseEntity implements Serializable {
     private Integer status;
     @Schema(description = "是否显示（0显示,1不显示）",requiredMode = Schema.RequiredMode.REQUIRED,allowableValues = {"0","1"})
     private Integer display;
-    @Schema(description = "系统设置权限编码(唯一)",requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    @Schema(description = "系统设置权限编码(唯一)",requiredMode = Schema.RequiredMode.NOT_REQUIRED,hidden = true)
     private String authCode;
 
 }

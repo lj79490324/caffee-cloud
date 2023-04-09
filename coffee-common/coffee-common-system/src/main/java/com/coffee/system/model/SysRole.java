@@ -26,7 +26,7 @@ public class SysRole extends BaseEntity {
     private String sysRoleName;
     @Schema(description = "角色编码（全局唯一）",requiredMode = Schema.RequiredMode.REQUIRED,example = "super_admin")
     private String sysRoleCode;
-    @Schema(description = "角色数据路径")
+    @Schema(description = "角色数据路径",hidden = true)
     @JsonIgnore
     private String path;
     @Schema(description = "角色描述")

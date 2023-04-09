@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2022/9/12 0:03
  */
 @RestController
-@RequestMapping("sysMenu")
+@RequestMapping("sysParam")
 public class SysParamController {
 
     @Autowired
